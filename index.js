@@ -1,8 +1,9 @@
 'use strict';
 
-var React = require('react-native');
-var window = React.Dimensions.get('window');
-var {View, NativeMethodsMixin} = React;
+var React = require('react');
+var ReactNative = require('react-native');
+var window = ReactNative.Dimensions.get('window');
+var {View, NativeMethodsMixin} = ReactNative;
 
 module.exports = React.createClass({
   displayName: 'InViewPort',
@@ -58,11 +59,11 @@ module.exports = React.createClass({
    */
   check: function () {
     var el = this.refs.myview;
-    var rect = el.measure((ox, oy, width, height, pageX, pageY) => {
+    var rect = el.measureInWindow((x, y, width, height) => {
       this.setState({
-        rectTop: pageY,
-        rectBottom: pageY + height,
-        rectWidth: pageX + width,
+        rectTop: y,
+        rectBottom: y + height,
+        rectWidth: x + width,
       })
     });
     var isVisible = (
