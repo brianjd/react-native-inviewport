@@ -27,7 +27,7 @@ module.exports = React.createClass({
       rectBottom: 0
     }
   },
-  componentDidMount: function () {
+  onLayout: function () {
     if (this.props.active) {
       this.startWatching();
     }
@@ -80,7 +80,7 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-      <View ref='myview' {...this.props}>
+      <View ref='myview' {...this.props} onLayout={this.onLayout}>
         {this.props.children}
       </View>
     );
